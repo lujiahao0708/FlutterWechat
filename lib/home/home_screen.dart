@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_wechat/constants.dart' show Constants;
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -13,23 +14,47 @@ class _HomeScreenState extends State<HomeScreen> {
     _navigationViews = [
       NavigationIconView(
         title: '微信',
-        icon: Icon(Icons.settings),
-        activeIcon: Icon(Icons.settings_applications),
+        icon: IconData(
+          0xe608,
+          fontFamily: Constants.IconFontFamily,
+        ),
+        activeIcon: IconData(
+          0xe603,
+          fontFamily: Constants.IconFontFamily,
+        ),
       ),
       NavigationIconView(
         title: '通讯录',
-        icon: Icon(Icons.settings),
-        activeIcon: Icon(Icons.settings_applications),
+        icon: IconData(
+          0xe601,
+          fontFamily: Constants.IconFontFamily,
+        ),
+        activeIcon: IconData(
+          0xe656,
+          fontFamily: Constants.IconFontFamily,
+        ),
       ),
       NavigationIconView(
         title: '发现',
-        icon: Icon(Icons.settings),
-        activeIcon: Icon(Icons.settings_applications),
+        icon: IconData(
+          0xe600,
+          fontFamily: Constants.IconFontFamily,
+        ),
+        activeIcon: IconData(
+          0xe671,
+          fontFamily: Constants.IconFontFamily,
+        ),
       ),
       NavigationIconView(
         title: '我',
-        icon: Icon(Icons.settings),
-        activeIcon: Icon(Icons.settings_applications),
+        icon: IconData(
+          0xe6c0,
+          fontFamily: Constants.IconFontFamily,
+        ),
+        activeIcon: IconData(
+          0xe626,
+          fontFamily: Constants.IconFontFamily,
+        ),
       ),
     ];
   }
@@ -71,17 +96,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
 class NavigationIconView {
   final String _title;
-  final Widget _icon;
-  final Widget _activeIcon;
+  final IconData _icon;
+  final IconData _activeIcon;
   final BottomNavigationBarItem item;
 
-  NavigationIconView({Key key, String title, Widget icon, Widget activeIcon}) :
+  NavigationIconView({Key key, String title, IconData icon, IconData activeIcon}) :
     _title = title,
     _icon = icon,
     _activeIcon = activeIcon,
     item = BottomNavigationBarItem(
-      icon: icon,
-      activeIcon: activeIcon,
+      icon: Icon(icon),
+      activeIcon: Icon(activeIcon),
       title: Text(title),
       backgroundColor: Colors.white,
     );
