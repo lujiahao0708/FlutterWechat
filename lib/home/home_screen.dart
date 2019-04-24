@@ -13,6 +13,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
   List<NavigationIconView> _navigationViews;
+  PageController _pageController;
+  List<Widget> _pages;
 
   void initState() {
     super.initState();
@@ -61,6 +63,13 @@ class _HomeScreenState extends State<HomeScreen> {
           fontFamily: Constants.IconFontFamily,
         ),
       ),
+    ];
+    _pageController = PageController(initialPage: _currentIndex);
+    _pages = [
+      Container(color: Colors.red,),
+      Container(color: Colors.blue,),
+      Container(color: Colors.green,),
+      Container(color: Colors.grey,),
     ];
   }
 
@@ -153,8 +162,11 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      body: Container(
-        color: Colors.redAccent,
+      body: PageView.builder(itemBuilder: (BuildContext context, int index) {
+        return _pages[index];
+      },
+      controller: _pageController,
+        itemCount: _pages.length,
       ),
       bottomNavigationBar: botNavBar,
     );
