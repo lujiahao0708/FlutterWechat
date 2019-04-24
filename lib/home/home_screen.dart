@@ -104,6 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
       onTap: (int index) {
         setState(() {
           _currentIndex = index;
+          _pageController.animateToPage(_currentIndex, duration: Duration(milliseconds: 200), curve: Curves.easeIn);
         });
       },
     );
@@ -167,6 +168,11 @@ class _HomeScreenState extends State<HomeScreen> {
       },
       controller: _pageController,
         itemCount: _pages.length,
+        onPageChanged: (int index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
       ),
       bottomNavigationBar: botNavBar,
     );
@@ -185,21 +191,9 @@ class NavigationIconView {
         _icon = icon,
         _activeIcon = activeIcon,
         item = BottomNavigationBarItem(
-          icon: Icon(
-            icon,
-            //color: Color(AppColors.TabIconNormal),
-          ),
-          activeIcon: Icon(
-            activeIcon,
-            //color: Color(AppColors.TabIconActive),
-          ),
-          title: Text(
-            title,
-//            style: TextStyle(
-//              fontSize: 14.0,
-//              color: Color(AppColors.TabIconNormal),
-//            ),
-          ),
+          icon: Icon(icon,),
+          activeIcon: Icon(activeIcon,),
+          title: Text(title,),
           backgroundColor: Colors.white,
         );
 }
