@@ -72,12 +72,13 @@ class _HomeScreenState extends State<HomeScreen> {
             iconName,
             fontFamily: Constants.IconFontFamily,
           ),
+          color: const Color(AppColors.AppBarPopupMenuColor),
           size: 22.0,
         ),
         Container(
           width: 12.0,
         ),
-        Text(title),
+        Text(title, style: TextStyle(color: const Color(AppColors.AppBarPopupMenuColor)),),
       ],
     );
   }

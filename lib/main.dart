@@ -7,5 +7,7 @@ void main() => runApp(new MaterialApp(
   home: new HomeScreen(),
   theme: ThemeData.light().copyWith(
     primaryColor: Color(AppColors.AppBarColor),
+    // 修改弹出菜单的背景颜色
+    cardColor: Color(AppColors.AppBarColor),
   ),
 ));
