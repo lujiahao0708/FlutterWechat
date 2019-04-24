@@ -11,6 +11,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int _currentIndex = 0;
   List<NavigationIconView> _navigationViews;
 
   void initState() {
@@ -85,12 +86,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     final BottomNavigationBar botNavBar = new BottomNavigationBar(
+      fixedColor: const Color(AppColors.TabIconActive),
       items: _navigationViews.map((NavigationIconView view) => view.item).toList(),
-      currentIndex: 0,
+      currentIndex: _currentIndex,
       type: BottomNavigationBarType.fixed,
       onTap: (int index) {
-        print('点击 $index');
+        setState(() {
+          _currentIndex = index;
+        });
       },
     );
 
@@ -99,6 +104,8 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text(
           '微信',
         ),
+        // 层级  就是阴影效果
+        elevation: 0.0,
         actions: <Widget>[
           Container(
             padding: const EdgeInsets.only(right: 16.0),
@@ -168,18 +175,18 @@ class NavigationIconView {
         item = BottomNavigationBarItem(
           icon: Icon(
             icon,
-            color: Color(AppColors.TabIconNormal),
+            //color: Color(AppColors.TabIconNormal),
           ),
           activeIcon: Icon(
             activeIcon,
-            color: Color(AppColors.TabIconActive),
+            //color: Color(AppColors.TabIconActive),
           ),
           title: Text(
             title,
-            style: TextStyle(
-              fontSize: 14.0,
-              color: Color(AppColors.TabIconNormal),
-            ),
+//            style: TextStyle(
+//              fontSize: 14.0,
+//              color: Color(AppColors.TabIconNormal),
+//            ),
           ),
           backgroundColor: Colors.white,
         );
