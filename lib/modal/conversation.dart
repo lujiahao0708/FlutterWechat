@@ -33,6 +33,10 @@ class Conversation {
   }
 }
 
+enum Device {
+  MAC, WIN
+}
+
 /// mock数据
 const List<Conversation> mockConversation = [
   const Conversation(
@@ -135,3 +139,8 @@ const List<Conversation> mockConversation = [
     unreadMsgCount: 0,
   ),
 ];
+
+//const mockConversationData = {
+//  'deviceInfo': null,
+//  'conversations': mockConversation,
+//}

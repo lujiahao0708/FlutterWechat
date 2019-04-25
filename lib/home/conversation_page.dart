@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../constants.dart' show AppColors, AppStyles, Constants;
-import '../modal/conversation.dart' show Conversation, mockConversation;
+import '../modal/conversation.dart' show Conversation, Device, mockConversation;
 
 class ConversationPage extends StatefulWidget {
   @override
@@ -12,9 +12,10 @@ class _ConversationPageState extends State<ConversationPage> {
   Widget build(BuildContext context) {
     return ListView.builder(
       itemBuilder: (BuildContext context, int index) {
-        return _ConversationItem(
-          conversation: mockConversation[index],
-        );
+        if (index == 0) {
+          return _DeviceInfoItem();
+        }
+        return _ConversationItem(conversation: mockConversation[index],);
       },
       itemCount: mockConversation.length,
     );
@@ -141,6 +142,48 @@ class _ConversationItem extends StatelessWidget {
           Column(
             children: _rightArea,
           ),
+        ],
+      ),
+    );
+  }
+}
+
+
+
+class _DeviceInfoItem extends StatelessWidget {
+  final Device device;
+
+  const _DeviceInfoItem({this.device: Device.MAC}): assert(device != null);
+
+  int get iconName {
+    return device == Device.MAC ? 0xe640 : 0xe75e;
+  }
+
+  String get deviceName {
+    return device == Device.MAC ? 'Mac' : 'Windows';
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.only(left: 24.0, top: 10.0, right: 24.0, bottom: 10.0),
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(width: Constants.DividerWidth, color: Color(AppColors.DividerColor))
+        ),
+        color: Color(AppColors.DividerColor),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Icon(IconData(
+            this.iconName,
+            fontFamily: Constants.IconFontFamily,
+          ),
+          size: 24.0, color: Color(AppColors.DeviceInfoItemIcon),),
+          SizedBox(width: 16.0,),
+          Text('$deviceName 微信已登录，手机通知已关闭。', style: AppStyles.DeviceInfoItemTextStyle,)
         ],
       ),
     );
