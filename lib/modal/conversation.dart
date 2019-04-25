@@ -140,7 +140,7 @@ const List<Conversation> mockConversation = [
   ),
 ];
 
-//const mockConversationData = {
-//  'deviceInfo': null,
-//  'conversations': mockConversation,
-//}
+const Map<String, List<Conversation>> mockConversationData = {
+  'deviceInfo': null,
+  'conversations': mockConversation,
+};
