@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_wechat/constants.dart' show AppColors, Constants;
+import 'conversation_page.dart';
 
 enum ActionIterms {
   GROUP_CHAT,ADD_FRIEND,QR_SCAN,PAYMENT,HELP
@@ -66,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
     ];
     _pageController = PageController(initialPage: _currentIndex);
     _pages = [
-      Container(color: Colors.red,),
+      ConversationPage(),
       Container(color: Colors.blue,),
       Container(color: Colors.green,),
       Container(color: Colors.grey,),
@@ -104,7 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
       onTap: (int index) {
         setState(() {
           _currentIndex = index;
-          _pageController.animateToPage(_currentIndex, duration: Duration(milliseconds: 200), curve: Curves.easeIn);
+          _pageController.animateToPage(_currentIndex, duration: Duration(milliseconds: 100), curve: Curves.easeIn);
         });
       },
     );
@@ -151,7 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             icon: Icon(
               IconData(
-                0xe658,
+                0xe60e,
                 fontFamily: Constants.IconFontFamily,
               ),
               size: 22.0,

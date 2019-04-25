@@ -44,7 +44,34 @@ flutter:
   # assets:
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
-
+  assets:
+    - assets/images/ic_file_transfer.png
+    - assets/images/ic_fengchao.png
+    - assets/images/ic_tx_news.png
+    - assets/images/ic_wx_games.png
+    - assets/images/ic_new_friend.png
+    - assets/images/ic_group_chat.png
+    - assets/images/ic_tag.png
+    - assets/images/ic_public_account.png
+    - assets/images/ic_bottle_msg.png
+    - assets/images/ic_feeds.png
+    - assets/images/ic_game_entry.png
+    - assets/images/ic_mini_program.png
+    - assets/images/ic_people_nearby.png
+    - assets/images/ic_quick_scan.png
+    - assets/images/ic_quick_search.png
+    - assets/images/ic_shake_phone.png
+    - assets/images/ic_shopping.png
+    - assets/images/ic_social_circle.png
+    - assets/images/ic_wallet.png
+    - assets/images/ic_album.png
+    - assets/images/ic_collections.png
+    - assets/images/ic_cards_wallet.png
+    - assets/images/ic_emotions.png
+    - assets/images/ic_settings.png
+    - assets/images/ic_qrcode_preview_tiny.png
+    - assets/images/default_nor_avatar.png
+    - assets/images/ad_game_notify.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
