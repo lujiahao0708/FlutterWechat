@@ -80,6 +80,25 @@ class _ConversationItem extends StatelessWidget {
       avatarContainer = avatar;
     }
 
+    // 免打扰图标
+    Widget muteIcon = Icon(
+      IconData(
+        0xe755,
+        fontFamily: Constants.IconFontFamily,
+      ),
+      color: Color(AppColors.ConversationMuteIcon),
+      size: Constants.ConversationMuteIconSize,
+    );
+
+    // 动态显示免打扰图标
+    var _rightArea = <Widget>[
+      Text(conversation.updateAt, style: AppStyles.DesStyle,),
+      // 增加间隔
+      SizedBox(height: 10.0,),
+    ];
+    if(conversation.isMute) {
+      _rightArea.add(muteIcon);
+    }
 
     return Container(
       padding: const EdgeInsets.all(10.0),
@@ -120,9 +139,7 @@ class _ConversationItem extends StatelessWidget {
           Container(width: 10.0,),
 
           Column(
-            children: <Widget>[
-              Text(conversation.updateAt, style: AppStyles.DesStyle,),
-            ],
+            children: _rightArea,
           ),
         ],
       ),
