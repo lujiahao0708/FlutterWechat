@@ -9,6 +9,8 @@ class AppColors {
   static const ConversationItemBg = 0xffffffff;
   static const DescTextColor = 0xff9e9e9e;
   static const DividerColor = 0xffd9d9d9;
+  static const NofityDotBg = 0xffff3e3e;
+  static const NofityDotText = 0xffffffff;
 }
 
 class AppStyles {
@@ -21,10 +23,16 @@ class AppStyles {
     fontSize: 12.0,
     color: Color(AppColors.DescTextColor),
   );
+
+  static const UnReadMsgCountDotStyle = TextStyle(
+    fontSize: 12.0,
+    color: Color(AppColors.NofityDotText),
+  );
 }
 
 class Constants {
   static const IconFontFamily = "appIconFont";
   static const ConversationAvatarSize = 48.0;
   static const DividerWidth = 1.0;
+  static const UnReadMsgNotifyDotSize = 20.0;
 }

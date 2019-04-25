@@ -46,6 +46,41 @@ class _ConversationItem extends StatelessWidget {
         height: Constants.ConversationAvatarSize,);
     }
 
+    Widget avatarContainer;
+
+    if (conversation.unreadMsgCount > 0) {
+      // 未读消息角标 控件
+      Widget unReadMsgCountText = Container(
+        width: Constants.UnReadMsgNotifyDotSize,
+        height: Constants.UnReadMsgNotifyDotSize,
+        // 布局
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          // 圆角
+          borderRadius: BorderRadius.circular(Constants.UnReadMsgNotifyDotSize / 2.0),
+          color: Color(AppColors.NofityDotBg),
+        ),
+        child: Text(conversation.unreadMsgCount.toString(), style: AppStyles.UnReadMsgCountDotStyle,),
+      );
+
+      // 头像组合控件
+      avatarContainer = Stack(
+        // 超出Stack控件部分显示效果
+        overflow: Overflow.visible,
+        children: <Widget>[
+          avatar,
+          Positioned(
+            right: -6.0,
+            top: -6.0,
+            child: unReadMsgCountText,
+          ),
+        ],
+      );
+    } else {
+      avatarContainer = avatar;
+    }
+
+
     return Container(
       padding: const EdgeInsets.all(10.0),
       // 增加分割线
@@ -61,7 +96,7 @@ class _ConversationItem extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          avatar,
+          avatarContainer,
 
           // 增加间隔 1.使用padding 2.增加一个container
           Container(width: 10.0,),
