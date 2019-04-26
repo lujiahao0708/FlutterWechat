@@ -1,24 +1,28 @@
 import 'package:flutter/material.dart';
 import '../constants.dart' show AppColors, AppStyles, Constants;
-import '../modal/conversation.dart' show Conversation, Device, mockConversationData;
+import '../modal/conversation.dart' show Conversation, Device, ConversationPageData;
 
 class ConversationPage extends StatefulWidget {
+
   @override
   _ConversationPageState createState() => _ConversationPageState();
 }
 
 class _ConversationPageState extends State<ConversationPage> {
-  var mockConversations = mockConversationData['conversations'];
+  final ConversationPageData data = ConversationPageData.mock();
+
   @override
   Widget build(BuildContext context) {
+    var mockConversations = data.conversations;
     return ListView.builder(
       itemBuilder: (BuildContext context, int index) {
-        if (index == 0) {
-          return _DeviceInfoItem();
+        if(data.device != null) {
+          return index == 0 ? _DeviceInfoItem(device: data.device,) : _ConversationItem(conversation: mockConversations[index-1],);
+        } else {
+          return _ConversationItem(conversation: mockConversations[index],);
         }
-        return _ConversationItem(conversation: mockConversations[index-1],);
       },
-      itemCount: mockConversations.length + 1,
+      itemCount: data.device != null ? mockConversations.length + 1 : mockConversations.length,
     );
   }
 }
@@ -150,7 +154,7 @@ class _ConversationItem extends StatelessWidget {
 }
 
 
-
+// 头部设备条目
 class _DeviceInfoItem extends StatelessWidget {
   final Device device;
 

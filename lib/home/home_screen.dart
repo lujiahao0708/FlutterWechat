@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_wechat/constants.dart' show AppColors, Constants;
+import 'contacts_page.dart';
 import 'conversation_page.dart';
 
 enum ActionIterms {
@@ -68,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
     _pageController = PageController(initialPage: _currentIndex);
     _pages = [
       ConversationPage(),
-      Container(color: Colors.blue,),
+      ContactsPage(),
       Container(color: Colors.green,),
       Container(color: Colors.grey,),
     ];
