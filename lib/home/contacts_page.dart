@@ -38,23 +38,25 @@ class _ContactItem extends StatelessWidget {
 
     // 列表项主体
     Widget _button = Container(
-        padding: const EdgeInsets.only(left:16.0, right:16.0,top: 10.0, bottom: 10.0),
-        decoration: BoxDecoration(
-          border: Border(
-            bottom: BorderSide(
-              width: Constants.DividerWidth, 
-              color: Color(AppColors.DividerColor)
-              ),
-          )
-        ),
-        child: Row(
-          children: <Widget>[
-            _avatarIcon,
-            SizedBox(width: 10.0,),
-            Text(title),
-          ],
-        ),
-      );
+      // symmetric 对称的操作
+      margin: const EdgeInsets.symmetric(horizontal: 16.0),
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            width: Constants.DividerWidth, 
+            color: Color(AppColors.DividerColor)
+            ),
+        )
+      ),
+      child: Row(
+        children: <Widget>[
+          _avatarIcon,
+          SizedBox(width: 10.0,),
+          Text(title),
+        ],
+      ),
+    );
 
     // 分组标签
     Widget _itemBody;
