@@ -124,6 +124,8 @@ class _ContactsPageState extends State<ContactsPage> {
     _contacts..addAll(data.contacts)
             ..addAll(data.contacts)
             ..addAll(data.contacts);
+    // 排序
+    _contacts.sort((Contact a, Contact b) => a.nameIndex.compareTo(b.nameIndex));
   }
 
   @override
@@ -135,10 +137,15 @@ class _ContactsPageState extends State<ContactsPage> {
         }
         int _contactIndex = index - _functionButtons.length;
         Contact _contact = _contacts[_contactIndex];
+        bool _isGroupTitle = true;
+        if(_contactIndex >= 1 && _contact.nameIndex == _contacts[_contactIndex -1].nameIndex) {
+            _isGroupTitle = false;
+        }
+        
         return _ContactItem(
           avatar: _contact.avatar,
           title: _contact.name,
-          groupTitle: _contact.nameIndex,
+          groupTitle: _isGroupTitle ? _contact.nameIndex : null,
         );
       },
       itemCount: _contacts.length + _functionButtons.length,
