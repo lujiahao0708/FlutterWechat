@@ -1,29 +1,32 @@
 import 'package:flutter/material.dart';
+
 import './full_width_button.dart';
-import '../i18n/strings.dart' show Strings;
+import '../constants.dart' show AppColors;
 
 class DiscoverPage extends StatefulWidget {
-  @override
   _DiscoverPageState createState() => _DiscoverPageState();
 }
 
 class _DiscoverPageState extends State<DiscoverPage> {
-  static const SEPARATE_SIZE = 10.0;
+  static const SEPARATE_SIZE = 20.0;
+
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
+    return Container(
+      color: Color(AppColors.BackgroundColor),
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            SizedBox(height: SEPARATE_SIZE),
             FullWidthButton(
               iconPath: 'assets/images/ic_social_circle.png',
-              title: Strings.FriendsCircle,
-              
+              title: '朋友圈',
               onPressed: () {},
             ),
             SizedBox(height: SEPARATE_SIZE),
             FullWidthButton(
               iconPath: 'assets/images/ic_quick_scan.png',
-              title: Strings.Scan,
+              title: '扫一扫',
               showDivider: true,
               onPressed: () {
                 print('点击了扫一扫');
@@ -31,55 +34,54 @@ class _DiscoverPageState extends State<DiscoverPage> {
             ),
             FullWidthButton(
               iconPath: 'assets/images/ic_shake_phone.png',
-              title: Strings.Shake,
+              title: '摇一摇',
               onPressed: () {},
             ),
             SizedBox(height: SEPARATE_SIZE),
             FullWidthButton(
               iconPath: 'assets/images/ic_feeds.png',
-              title: Strings.KnowMore,
+              title: '看一看',
               showDivider: true,
-              
               onPressed: () {},
             ),
             FullWidthButton(
               iconPath: 'assets/images/ic_quick_search.png',
-              title: Strings.SearchMore,
+              title: '搜一搜',
               onPressed: () {},
             ),
             SizedBox(height: SEPARATE_SIZE),
             FullWidthButton(
               iconPath: 'assets/images/ic_people_nearby.png',
-              title: Strings.FriendsNearby,
+              title: '附近的人',
               showDivider: true,
               onPressed: () {},
             ),
             FullWidthButton(
               iconPath: 'assets/images/ic_bottle_msg.png',
-              title: Strings.FlowMessage,
+              title: '漂流瓶',
               onPressed: () {},
             ),
             SizedBox(height: SEPARATE_SIZE),
             FullWidthButton(
               iconPath: 'assets/images/ic_shopping.png',
-              title: Strings.Shopping,
+              title: '购物',
               showDivider: true,
               onPressed: () {},
             ),
             FullWidthButton(
               iconPath: 'assets/images/ic_game_entry.png',
-              title: Strings.Games,
-              
+              title: '游戏',
               onPressed: () {},
             ), 
             SizedBox(height: SEPARATE_SIZE),
             FullWidthButton(
               iconPath: 'assets/images/ic_mini_program.png',
-              title: Strings.MiniPrograms,
+              title: '小程序',
               onPressed: () {},
             ),
             SizedBox(height: SEPARATE_SIZE),
           ],
+        ),
       ),
     );
   }

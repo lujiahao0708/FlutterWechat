@@ -1,22 +1,17 @@
 import 'package:flutter/material.dart';
+
 import '../constants.dart' show Constants, AppColors, AppStyles;
 
 class FullWidthButton extends StatelessWidget {
   static const HORIZONTAL_PADDING = 20.0;
-  static const VERTICAL_PADDING = 16.0;
-  static const HEIGHT = Constants.FullWidthIconButtonIconSize + VERTICAL_PADDING * 2;
-  static const TAG_IMG_SIZE = 28.0;
-  static const TAG_IMG_SIZE_BIG = 32.0;
-  static const DOT_RADIUS = 5.0;
+  static const VERTICAL_PADDING = 13.0;
 
   const FullWidthButton({
     @required this.iconPath,
     @required this.title,
     this.showDivider : false,
-    this.showRightArrow : true,
     @required this.onPressed,
-    this.des,
-    this.customWidget
+    this.des
   }) : assert(iconPath != null),
        assert(title != null),
        assert(onPressed != null);
@@ -24,15 +19,12 @@ class FullWidthButton extends StatelessWidget {
   final String iconPath;
   final String title;
   final bool showDivider;
-  final bool showRightArrow;
   final VoidCallback onPressed;
   final String des;
-  final Widget customWidget;
 
   @override
   Widget build(BuildContext context) {
     final pureButton = Row(
-      // 交叉轴方向
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Image.asset(
@@ -40,25 +32,36 @@ class FullWidthButton extends StatelessWidget {
           width: Constants.FullWidthIconButtonIconSize,
           height: Constants.FullWidthIconButtonIconSize,
         ),
-        SizedBox(width: HORIZONTAL_PADDING,),
-        Text(title),
+        SizedBox(width: HORIZONTAL_PADDING),
+        Expanded(
+          child: Text(title),
+        ),
       ],
     );
+
+    // 处理提示信息
+    if(this.des != null) {
+      pureButton.children.add(
+        Text(this.des, style: AppStyles.ButtonDesTextStyle)
+      );
+    }
+
     final borderedButton = Container(
       decoration: BoxDecoration(
         border: Border(
-          bottom: BorderSide(color: const Color(AppColors.DividerColor), width: Constants.DividerWidth),
-        ),
+          bottom: BorderSide(color: const Color(AppColors.DividerColor), width: Constants.DividerWidth)
+        )
       ),
       padding: const EdgeInsets.only(bottom: VERTICAL_PADDING),
       child: pureButton,
     );
     return FlatButton(
       onPressed: onPressed,
-      padding: const EdgeInsets.only(
-        left: HORIZONTAL_PADDING, right: HORIZONTAL_PADDING,
-        top: VERTICAL_PADDING, bottom: VERTICAL_PADDING,
+      padding: EdgeInsets.only(
+        left: HORIZONTAL_PADDING, right: HORIZONTAL_PADDING, 
+        top: VERTICAL_PADDING, bottom: this.showDivider ? 0.0 : VERTICAL_PADDING
       ),
+      color: Colors.white,
       child: this.showDivider ? borderedButton : pureButton,
     );
   }

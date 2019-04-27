@@ -3,6 +3,7 @@ import 'package:flutter_wechat/constants.dart' show AppColors, Constants;
 import 'package:flutter_wechat/home/discover_page.dart';
 import 'contacts_page.dart';
 import 'conversation_page.dart';
+import 'functions_page.dart';
 
 enum ActionIterms {
   GROUP_CHAT,ADD_FRIEND,QR_SCAN,PAYMENT,HELP
@@ -72,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ConversationPage(),
       ContactsPage(),
       DiscoverPage(),
-      Container(color: Colors.grey,),
+      FunctionsPage(),
     ];
   }
 
