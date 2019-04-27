@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_wechat/constants.dart' show AppColors, Constants;
+import 'package:flutter_wechat/home/discover_page.dart';
 import 'contacts_page.dart';
 import 'conversation_page.dart';
 
@@ -70,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
     _pages = [
       ConversationPage(),
       ContactsPage(),
-      Container(color: Colors.green,),
+      DiscoverPage(),
       Container(color: Colors.grey,),
     ];
   }
