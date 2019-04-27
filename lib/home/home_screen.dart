@@ -127,39 +127,47 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () => print('点击了搜索按钮'),
             ),
           ),
-          PopupMenuButton(
-            itemBuilder: (BuildContext context) {
-              return <PopupMenuItem<ActionIterms>>[
-                PopupMenuItem(
-                  child: _buildPopupMenuItem(0xe69e, "发起群聊"),
-                  value: ActionIterms.GROUP_CHAT,
-                ),
-                PopupMenuItem(
-                  child: _buildPopupMenuItem(0xe638, "添加朋友"),
-                  value: ActionIterms.ADD_FRIEND,
-                ),
-                PopupMenuItem(
-                  child: _buildPopupMenuItem(0xe61b, "扫一扫"),
-                  value: ActionIterms.QR_SCAN,
-                ),
-                PopupMenuItem(
-                  child: _buildPopupMenuItem(0xe62a, "收付款"),
-                  value: ActionIterms.PAYMENT,
-                ),
-                PopupMenuItem(
-                  child: _buildPopupMenuItem(0xe63d, "帮助与反馈"),
-                  value: ActionIterms.HELP,
-                ),
-              ];
-            },
-            icon: Icon(
-              IconData(
-                0xe60e,
-                fontFamily: Constants.IconFontFamily,
-              ),
-              size: 22.0,
+          Theme(
+            data: ThemeData(
+              primaryColor: Color(AppColors.AppBarColor),
+              // 修改弹出菜单的背景颜色
+              cardColor: Color(AppColors.AppBarColor),
             ),
-            onSelected: (ActionIterms selected) => print("点击了 $selected "),
+            child: PopupMenuButton(
+              itemBuilder: (BuildContext context) {
+                return <PopupMenuItem<ActionIterms>>[
+                  PopupMenuItem(
+                    child: _buildPopupMenuItem(0xe69e, "发起群聊"),
+                    value: ActionIterms.GROUP_CHAT,
+                  ),
+                  PopupMenuItem(
+                    child: _buildPopupMenuItem(0xe638, "添加朋友"),
+                    value: ActionIterms.ADD_FRIEND,
+                  ),
+                  PopupMenuItem(
+                    child: _buildPopupMenuItem(0xe61b, "扫一扫"),
+                    value: ActionIterms.QR_SCAN,
+                  ),
+                  PopupMenuItem(
+                    child: _buildPopupMenuItem(0xe62a, "收付款"),
+                    value: ActionIterms.PAYMENT,
+                  ),
+                  PopupMenuItem(
+                    child: _buildPopupMenuItem(0xe63d, "帮助与反馈"),
+                    value: ActionIterms.HELP,
+                  ),
+                ];
+              },
+              icon: Icon(
+                IconData(
+                  0xe60e,
+                  fontFamily: Constants.IconFontFamily,
+                ),
+                color: Colors.white,
+                size: 22.0,
+              ),
+              onSelected: (ActionIterms selected) => print("点击了 $selected "),
+            ),
           ),
           Container(
             width: 16.0,

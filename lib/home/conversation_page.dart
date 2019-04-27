@@ -29,11 +29,49 @@ class _ConversationPageState extends State<ConversationPage> {
 
 // 每个列表项的控件
 class _ConversationItem extends StatelessWidget {
-  const _ConversationItem({Key key, this.conversation})
+  static const VERTICAL_PADDING = 12.0;
+  static const HORIZONTAL_PADDING = 18.0;
+  static const UN_READ_MSG_CIRCLE_SIZE = 20.0;
+  static const UN_READ_MSG_DOT_SIZE = 12.0;
+
+  _ConversationItem({Key key, this.conversation, this.tapPos})
       : assert(conversation != null),
       super(key: key);
 
   final Conversation conversation;
+  var tapPos;
+
+  _showMenu(BuildContext context, Offset tapPos) {
+    final RenderBox overlay = Overlay.of(context).context.findRenderObject();
+    final RelativeRect position = RelativeRect.fromLTRB(
+      tapPos.dx, tapPos.dy,
+      overlay.size.width - tapPos.dx,
+      overlay.size.height - tapPos.dy
+    );
+    showMenu<String>(
+      context: context,
+      position: position,
+      items: <PopupMenuItem<String>>[
+        PopupMenuItem(
+          child: Text(Constants.MENU_MARK_AS_UNREAD_VALUE),
+          value: Constants.MENU_MARK_AS_UNREAD,
+        ),
+        PopupMenuItem(
+          child: Text(Constants.MENU_PIN_TO_TOP_VALUE),
+          value: Constants.MENU_PIN_TO_TOP,
+        ),
+        PopupMenuItem(
+          child: Text(Constants.MENU_DELETE_CONVERSATION_VALUE),
+          value: Constants.MENU_DELETE_CONVERSATION,
+        ),
+      ]
+    ).then<String>((String selected) {
+      switch(selected){
+        default:
+          print('当前选中的是：$selected');
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +87,8 @@ class _ConversationItem extends StatelessWidget {
       avatar = Image.asset(
         conversation.avatar,
         width: Constants.ConversationAvatarSize,
-        height: Constants.ConversationAvatarSize,);
+        height: Constants.ConversationAvatarSize,
+      );
     }
 
     Widget avatarContainer;
@@ -106,48 +145,57 @@ class _ConversationItem extends StatelessWidget {
       _rightArea.add(muteIcon);
     }
 
-    return Container(
-      padding: const EdgeInsets.all(10.0),
-      // 增加分割线
-      decoration: BoxDecoration(
-          color: Color(AppColors.ConversationItemBg),
-        border: Border(
-          bottom: BorderSide(
-            color: Color(AppColors.DividerColor),
-            width: Constants.DividerWidth,
+    return Material(
+      color: Color(AppColors.ConversationItemBg),
+      child: InkWell(
+        onTap: (){print('打开对话框${conversation.title}');},
+        onTapDown: (TapDownDetails details) {
+          tapPos = details.globalPosition;
+        },
+        onLongPress: (){ _showMenu(context, tapPos); },
+        child: Container(
+          padding: const EdgeInsets.all(10.0),
+          // 增加分割线
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(
+                color: Color(AppColors.DividerColor),
+                width: Constants.DividerWidth,
+              ),
+            )
           ),
-        )
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          avatarContainer,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              avatarContainer,
 
-          // 增加间隔 1.使用padding 2.增加一个container
-          Container(width: 10.0,),
+              // 增加间隔 1.使用padding 2.增加一个container
+              Container(width: 10.0,),
 
-          // 可扩展控件，先让其他控件占位  然后自己在填充
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  conversation.title,
-                  style: AppStyles.TitleStyle,
+              // 可扩展控件，先让其他控件占位  然后自己在填充
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      conversation.title,
+                      style: AppStyles.TitleStyle,
+                    ),
+                    Text(
+                      conversation.des,
+                      style: AppStyles.DesStyle,
+                    ),
+                  ],
                 ),
-                Text(
-                  conversation.des,
-                  style: AppStyles.DesStyle,
-                ),
-              ],
-            ),
-          ),
-          Container(width: 10.0,),
+              ),
+              Container(width: 10.0,),
 
-          Column(
-            children: _rightArea,
+              Column(
+                children: _rightArea,
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
