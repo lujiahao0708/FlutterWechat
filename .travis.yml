@@ -49,8 +49,8 @@ jobs:
       #以上为Flutter环境搭建
       before_script:
         # 用你自己的解密命令替代
-        - openssl aes-256-cbc -K $encrypted_275e96c4265b_key -iv $encrypted_275e96c4265b_iv -in key.properties.enc -out key.properties -d
-        - openssl aes-256-cbc -K $encrypted_275e96c4265b_key -iv $encrypted_275e96c4265b_iv -in flutter_test.jks.enc -out flutter_test.jks -d
+        - openssl aes-256-cbc -K $encrypted_275e96c4265b_key -iv $encrypted_275e96c4265b_iv -in key.properties.enc -out android/key.properties -d
+        - openssl aes-256-cbc -K $encrypted_275e96c4265b_key -iv $encrypted_275e96c4265b_iv -in flutter_test.jks.enc -out android/flutter_test.jks -d
         - git clone https://github.com/flutter/flutter.git -b beta --depth 1
       script:
         - "./flutter/bin/flutter upgrade"
