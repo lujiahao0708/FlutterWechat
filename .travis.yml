@@ -65,7 +65,7 @@ jobs:
         skip_cleanup: true
         # 用你的api_key替代
         api_key:
-          secure: uDRE0d3gZ5JYhl/jBiDp5z...
+          secure: G+7dKkugZcG3VjZkIQ6CMemwHwcPkpBiJikW7jonxKOrhIFpCeKk2MkY+tCJU4hd48z2prS78U+7yCnzU6R9qMqlQ75giIlTrNaPoHzhKoeafutrOkUjd80FgCQwoqaYADEO+2IntmLQ2t9W/1T1rI5IeTvRfoM2b+C9A+vmRW9t8KYmYBRSGzXKbMQhW4d4nZKWTaJliyu5Q2mT6eWAnMVUyyQiKoods+La77ZsUB5wOVIwnhhDzUjbjtcy7MsjdtQ5jXyNOOlLfPBYQVg8aQfp5459m81ejnQsMxBhhfNehbEtOP7zvq8PwS0RF3lYb27s2LJA3jVlADXYWUJHTyScurOyxSgOsqi8sJG/U/lj/ZAx49d0/G+jq7NFiIxsCDnfwuGfiGxE1NjUr5RUk5ifo3xhJVagLuoJVEcMhvCmwvdb9x9NzMyGXe9BTcDvylKWGYFvygFGTOHIyl954CPBm0fgBHgpfODGR0LOMsFu/Iggqc/Pw71FVZ0Oc+6r1JI/dxsdW2Eh/gpBTNijjZbk9VghymWTBpwpQm6Dkjv6au6w+VjAkdmHQ8IyicBsIfEJW1qgGT5t+sn/TuQ6SP9WRb0uB09P5oXeOWBpQjXzdrlrcCt5ylweTorEu3QCfawBZZHNvBLIDQxKQOY2ufxxSiNdmBDqtDi5HgfdljI=
         file: $APK_OUTPUT
         on:
           tags: true
@@ -75,34 +75,35 @@ jobs:
         - set -e
         - $TRAVIS_BUILD_DIR/pgyer_upload.sh "${TRAVIS_BUILD_DIR}/app/build/outputs/apk/release/app-release.apk" $PGYER_API_KEY
 
-    - stage: deployIPA
-      os: osx
-      language: objective-c
-      osx_image: xcode9.2
-      before_script:
-        - pip2 install six
-        - brew update
-        - brew install libimobiledevice
-        - brew install ideviceinstaller
-        - brew install ios-deploy
-        # 以上安装xcode环境
-        - git clone https://github.com/flutter/flutter.git -b beta --depth 1
-      script:
-        - "./flutter/bin/flutter upgrade"
-        - gem install cocoapods
-        - pod setup
-        - "./flutter/bin/flutter -v build ios --release --no-codesign"
-        - mkdir Runner
-        - mkdir Runner/Payload
-        - cp -r build/ios/iphoneos/Runner.app Runner/Payload/Runner.app
-        - cd Runner
-        - zip -r Runner.ipa Payload
-      deploy:
-        provider: releases
-        skip_cleanup: true
-        #跟Android的api_key是一致的
-        api_key:
-          secure: uDRE0d3gZ5JYhl/jBiDp5zv32fH...
-        file: Runner.ipa
-        on:
-          tags: true
+# TODO
+#    - stage: deployIPA
+#      os: osx
+#      language: objective-c
+#      osx_image: xcode9.2
+#      before_script:
+#        - pip2 install six
+#        - brew update
+#        - brew install libimobiledevice
+#        - brew install ideviceinstaller
+#        - brew install ios-deploy
+#        # 以上安装xcode环境
+#        - git clone https://github.com/flutter/flutter.git -b beta --depth 1
+#      script:
+#        - "./flutter/bin/flutter upgrade"
+#        - gem install cocoapods
+#        - pod setup
+#        - "./flutter/bin/flutter -v build ios --release --no-codesign"
+#        - mkdir Runner
+#        - mkdir Runner/Payload
+#        - cp -r build/ios/iphoneos/Runner.app Runner/Payload/Runner.app
+#        - cd Runner
+#        - zip -r Runner.ipa Payload
+#      deploy:
+#        provider: releases
+#        skip_cleanup: true
+#        #跟Android的api_key是一致的
+#        api_key:
+#          secure: G+7dKkugZcG3VjZkIQ6CMemwHwcPkpBiJikW7jonxKOrhIFpCeKk2MkY+tCJU4hd48z2prS78U+7yCnzU6R9qMqlQ75giIlTrNaPoHzhKoeafutrOkUjd80FgCQwoqaYADEO+2IntmLQ2t9W/1T1rI5IeTvRfoM2b+C9A+vmRW9t8KYmYBRSGzXKbMQhW4d4nZKWTaJliyu5Q2mT6eWAnMVUyyQiKoods+La77ZsUB5wOVIwnhhDzUjbjtcy7MsjdtQ5jXyNOOlLfPBYQVg8aQfp5459m81ejnQsMxBhhfNehbEtOP7zvq8PwS0RF3lYb27s2LJA3jVlADXYWUJHTyScurOyxSgOsqi8sJG/U/lj/ZAx49d0/G+jq7NFiIxsCDnfwuGfiGxE1NjUr5RUk5ifo3xhJVagLuoJVEcMhvCmwvdb9x9NzMyGXe9BTcDvylKWGYFvygFGTOHIyl954CPBm0fgBHgpfODGR0LOMsFu/Iggqc/Pw71FVZ0Oc+6r1JI/dxsdW2Eh/gpBTNijjZbk9VghymWTBpwpQm6Dkjv6au6w+VjAkdmHQ8IyicBsIfEJW1qgGT5t+sn/TuQ6SP9WRb0uB09P5oXeOWBpQjXzdrlrcCt5ylweTorEu3QCfawBZZHNvBLIDQxKQOY2ufxxSiNdmBDqtDi5HgfdljI=
+#        file: Runner.ipa
+#        on:
+#          tags: true
