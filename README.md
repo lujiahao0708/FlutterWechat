@@ -1,4 +1,5 @@
 # FlutterWechat
+[![Build Status](https://travis-ci.org/lujiahao0708/FlutterWechat.svg?branch=master)](https://travis-ci.org/lujiahao0708/FlutterWechat)
 
 Use Flutter to copy Wechat.
 
@@ -30,6 +31,7 @@ Use Flutter to copy Wechat.
 
 * **帅的惊动美帝国** - *Video tutorial* - [Bilibili](https://space.bilibili.com/72683969)
 * **lujiahao** - *Code work* - [Github](https://github.com/lujiahao0708)
+* **FengY** - *Integrate TravisCI* - [掘金](https://juejin.im/post/5b20b5695188257d7d719bb6)
 
 ## License
 
