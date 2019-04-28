@@ -73,7 +73,7 @@ jobs:
       # 在apk上传到GitHub后，使用蒲公英的上传脚本将apk上传到蒲公英
       after_deploy:
         - set -e
-        - $TRAVIS_BUILD_DIR/pgyer_upload.sh "${TRAVIS_BUILD_DIR}/android/${APK_OUTPUT}/app-release.apk" $PGYER_API_KEY
+        - $TRAVIS_BUILD_DIR/pgyer_upload.sh "${TRAVIS_BUILD_DIR}/${APK_OUTPUT}/app-release.apk" $PGYER_API_KEY
 
 # TODO
 #    - stage: deployIPA
