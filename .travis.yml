@@ -38,7 +38,7 @@ jobs:
       jdk: oraclejdk8
       sudo: false
       # 以上都是在安装AndroidSDK
-      env: APK_OUTPUT=build/app/outputs/apk/release/app-release.apk
+      env: APK_OUTPUT=build/app/outputs/apk/release/
       addons:
         apt:
           sources:
@@ -66,14 +66,14 @@ jobs:
         # 用你的api_key替代
         api_key:
           secure: qACR41yhrLxnq/MNsQPxv1DIWDI319EE68sE204mhNfEvqCt6TOfbEnLQ/0TYYdGatzh6G2N3YoJzkTmKPXC37qBUUCpYbbzDC/RSIX/a9xKtBsNep3PzzymHQ15jB16iLgFcPrBKyuqzkJAk1ev3Az9OzUsWFj4JSwLyvznpjlz+Iv5ai17PfjFTdcj6393whEs47e7F3ZNiDpam6fB8PMpAHKu2kN3IBt+XQW/dumKMHxDN3NtLo/KH0uIg0LT0cJvYU72qtQuCya5QfyTzh4VWp9jS0Twesx27KtL/2kf3MC0M3dl5SlPzxa7Ia9fTru6tMhneLG8LwqatmyqX5WDPKwk9d0bkdAoaumOwZL8fVmu8E34KXWgt2UOVU2NOtpeuEhD6hymANCVn4JrUXzL/hMsVFjrDhhazk6P+jq0v3sWnPx1H1Brng8SyQcBE3p3jZfakn2rlMshpyB5DIc0HKbcme+zdsQer7NU/Djft6rQ5kdZqHp/4yuaz2ih/U25lmd5rcJr+PDJzPTMEi0qbV0rNRij1LQcMS7CAk8y6h34WsZJO7seYLbBvbaBvJjBZ2QsuT5ugMbVkk3ZIvN7A6GpT6LXpvghdcSGtE9Mvjxe55Nx4UciAGrhrS8ffYO/jcvV4/yxoXByo/6cLK8heu45lDnmWa0aGD2O/sc=
-        file: $APK_OUTPUT
+        file: $APK_OUTPUT/app-release.apk
         on:
           tags: true
 
       # 在apk上传到GitHub后，使用蒲公英的上传脚本将apk上传到蒲公英
       after_deploy:
         - set -e
-        - $TRAVIS_BUILD_DIR/pgyer_upload.sh "${TRAVIS_BUILD_DIR}/app/build/outputs/apk/release/app-release.apk" $PGYER_API_KEY
+        - $TRAVIS_BUILD_DIR/pgyer_upload.sh "${APK_OUTPUT}/app-release.apk" $PGYER_API_KEY
 
 # TODO
 #    - stage: deployIPA
