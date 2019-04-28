@@ -2,10 +2,6 @@
 jobs:
   include:
     - stage: test
-    - stage: deployAPK
-    - stage: deployIPA
-
-    - stage: test
       os: linux
       language: generic
       sudo: false
